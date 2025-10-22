@@ -12,6 +12,11 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
+    private val navController by lazy{
+        val navHostFragment = supportFragmentManager.findFragmentById(binding.fcvMain.id) as? NavHostFragment
+        navHostFragment?.navController
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -25,11 +30,19 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        this.eventListeners()
     }
 
-    private fun navigationController(){
-        val navHostFragment = supportFragmentManager.findFragmentById(binding.btnNextMain.id) as NavHostFragment
-
-        val navController = navHostFragment.navController
+    private fun eventListeners(){
+        binding.btnNextMain.setOnClickListener {
+            navController?.currentDestination?.id.let {
+                when(it){
+                    R.id.firstFragment -> navController?.navigate(R.id.action_firstFragment_to_secondFragment)
+                    R.id.secondFragment -> navController?.popBackStack()
+                }
+            }
+        }
     }
+
 }
