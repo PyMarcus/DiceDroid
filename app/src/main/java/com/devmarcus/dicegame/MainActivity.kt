@@ -5,6 +5,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.navigation.fragment.NavHostFragment
 import com.devmarcus.dicegame.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -24,5 +25,11 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+    }
+
+    private fun navigationController(){
+        val navHostFragment = supportFragmentManager.findFragmentById(binding.btnNextMain.id) as NavHostFragment
+
+        val navController = navHostFragment.navController
     }
 }
