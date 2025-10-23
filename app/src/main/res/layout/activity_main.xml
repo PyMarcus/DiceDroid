@@ -7,6 +7,17 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/tvRolledDice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="---"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fcvMain"
         android:name="androidx.navigation.fragment.NavHostFragment"
@@ -16,16 +27,31 @@
         app:navGraph="@navigation/main_nav_graph"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvRolledDice"
+        app:layout_constraintBottom_toTopOf="@id/btnPlayMain"
+        />
+
+
+
+    <Button
+        android:id="@+id/btnPlayMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/row_dice"
+        app:layout_constraintTop_toBottomOf="@id/fcvMain"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/btnNextMain"
+        android:layout_margin="8dp"
+
         />
 
     <Button
         android:id="@+id/btnNextMain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Next"
-        app:layout_constraintTop_toBottomOf="@id/fcvMain"
+        android:text="@string/next"
+        app:layout_constraintTop_toBottomOf="@id/btnPlayMain"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
