@@ -5,14 +5,16 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/tvRolledDice"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="---"
+    <ImageView
+        android:id="@+id/ivRolledDice1"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
         android:textAlignment="center"
+        android:layout_margin="16dp"
+        tools:src="@drawable/dice_six_faces_one"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -27,7 +29,7 @@
         app:navGraph="@navigation/main_nav_graph"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvRolledDice"
+        app:layout_constraintTop_toBottomOf="@id/ivRolledDice1"
         app:layout_constraintBottom_toTopOf="@id/btnPlayMain"
         />
 
@@ -35,27 +37,28 @@
 
     <Button
         android:id="@+id/btnPlayMain"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/row_dice"
         app:layout_constraintTop_toBottomOf="@id/fcvMain"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/btnNextMain"
-        android:layout_margin="8dp"
+        android:layout_margin="24dp"
 
         />
 
     <Button
         android:id="@+id/btnNextMain"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/next"
         app:layout_constraintTop_toBottomOf="@id/btnPlayMain"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_margin="24dp"
+        android:layout_marginHorizontal="64dp"
+        android:layout_marginBottom="24dp"
 
         />
 
