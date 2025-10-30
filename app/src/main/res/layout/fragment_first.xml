@@ -8,7 +8,7 @@
     tools:context=".FirstFragment">
 
     <ImageView
-        android:id="@+id/ivRolledDice1"
+        android:id="@+id/ivRolledDice2"
         android:layout_width="128dp"
         android:layout_height="128dp"
         android:contentDescription="@string/a_dice_image_is_showing_here"

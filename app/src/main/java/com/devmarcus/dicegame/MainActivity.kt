@@ -31,7 +31,9 @@ class MainActivity : AppCompatActivity() {
             repeatOnLifecycle(Lifecycle.State.STARTED){
                 // verifica se houve mudanca de status
                 viewModel.uiState.collect {
-                    binding.tvRolledDice.text = it.rolledDiceValue?.toString()
+                    it.rolledDiceValue2?.let {
+                        binding.ivRolledDice1.setImageResource(it)
+                    }
                 }
             }
         }
