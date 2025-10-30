@@ -9,6 +9,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.devmarcus.dicegame.databinding.ActivityMainBinding
 import kotlinx.coroutines.launch
@@ -19,7 +20,7 @@ class MainActivity : AppCompatActivity() {
     private val viewModel: DiceViewModel by viewModels()
 
     private val navController by lazy{
-        val navHostFragment = supportFragmentManager.findFragmentById(binding.fcvMain.id) as? NavHostFragment
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fcvMain) as? NavHostFragment
         navHostFragment?.navController
     }
 
@@ -27,11 +28,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         //enableEdgeToEdge()
 
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED){
                 // verifica se houve mudanca de status
                 viewModel.uiState.collect {
-                    it.rolledDiceValue2?.let {
+                    it.rolledDiceValue1?.let {
                         binding.ivRolledDice1.setImageResource(it)
                     }
                 }
@@ -39,21 +43,16 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-
-        binding = ActivityMainBinding.inflate(layoutInflater)
-
-        setContentView(binding.root)
-
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(binding.main.id)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        this.eventListeners()
+        this.eventListeners(navController)
     }
 
-    private fun eventListeners(){
+    private fun eventListeners(navController: NavController?){
         // next btn
         binding.btnNextMain.setOnClickListener {
             navController?.currentDestination?.id.let {
