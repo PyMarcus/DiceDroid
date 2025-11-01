@@ -52,6 +52,17 @@ class MainActivity : AppCompatActivity() {
         this.eventListeners(navController)
     }
 
+    override fun onResume() {
+        // quando o app esta em 1 plano
+        super.onResume()
+
+        viewModel.uiStateLiveData.observe(this@MainActivity){
+            uiState -> uiState.rolledDiceValue1?.let {
+                imgRes -> binding.ivRolledDice1.setImageResource(imgRes)
+        }
+        }
+    }
+
     private fun eventListeners(navController: NavController?){
         // next btn
         binding.btnNextMain.setOnClickListener {
