@@ -40,15 +40,17 @@ class DiceViewModel: ViewModel(){
         )
     }
 
-    fun getDiceImageResource(diceValue: Int): Int{
-        return when(diceValue){
-            1-> R.drawable.dice_six_faces_one
-            2 -> R.drawable.dice_six_faces_two
-            3 -> R.drawable.dice_six_faces_three
-            4 -> R.drawable.dice_six_faces_four
-            5 -> R.drawable.dice_six_faces_five
-            6 -> R.drawable.dice_six_faces_six
-            else -> R.drawable.dice_six_faces_one
-        }
+
+}
+
+fun getDiceImageResource(diceValue: Int): Int{
+    return when(diceValue){
+        1-> R.drawable.dice_six_faces_one
+        2 -> R.drawable.dice_six_faces_two
+        3 -> R.drawable.dice_six_faces_three
+        4 -> R.drawable.dice_six_faces_four
+        5 -> R.drawable.dice_six_faces_five
+        6 -> R.drawable.dice_six_faces_six
+        else -> R.drawable.dice_six_faces_one
     }
 }

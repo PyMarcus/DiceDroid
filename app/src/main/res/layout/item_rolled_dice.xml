@@ -47,7 +47,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"android:padding="16dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="16dp">
 
         <ImageView
             android:id="@+id/iv_history2"
