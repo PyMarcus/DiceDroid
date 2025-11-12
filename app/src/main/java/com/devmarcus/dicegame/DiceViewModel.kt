@@ -13,7 +13,9 @@ data class DiceUiState(
     @DrawableRes val rolledDiceValue1: Int? = null,
     @DrawableRes val rolledDiceValue2: Int? = null,
     @DrawableRes val rolledDiceValue3: Int? = null,
-    val numberOfRolls: Int = 0)
+    val numberOfRolls: Int = 0,
+    val rolledDiceList: List<RolledDices> = emptyList<RolledDices>()
+)
 
 class DiceViewModel: ViewModel(){
     private val _uiState = MutableStateFlow(DiceUiState())
@@ -24,12 +26,23 @@ class DiceViewModel: ViewModel(){
 
 
     fun rollDice(){
+        val rd1 = Random.nextInt(from = 1, until = 7)
+        val rd2 = Random.nextInt(from = 1, until = 7)
+        val rd3 = Random.nextInt(from = 1, until = 7)
+
+        val _rolledDices = RolledDices(rd1, rd2, rd3)
+
         _uiState.update { currentState ->
+
+            val currentRolledDiceList = currentState.rolledDiceList.toMutableList()
+            currentRolledDiceList.add(_rolledDices)
+            val updatedRolledDiceList = currentRolledDiceList.toList()
             currentState.copy(
-                rolledDiceValue1 = getDiceImageResource(Random.nextInt(from = 1, until = 7)),
-                rolledDiceValue2 = getDiceImageResource(Random.nextInt(from = 1, until = 7)),
-                rolledDiceValue3 = getDiceImageResource(Random.nextInt(from = 1, until = 7)),
+                rolledDiceValue1 = getDiceImageResource(rd1),
+                rolledDiceValue2 = getDiceImageResource(rd2),
+                rolledDiceValue3 = getDiceImageResource(rd3),
                 numberOfRolls = currentState.numberOfRolls + 1,
+                rolledDiceList = updatedRolledDiceList
             )
         }
         _uiStateLiveData.value = DiceUiState(
