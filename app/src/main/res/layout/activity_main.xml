@@ -8,16 +8,27 @@
     android:background="@color/black"
     tools:context=".MainActivity">
 
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
     <ImageView
         android:id="@+id/ivRolledDice1"
         android:layout_width="128dp"
         android:layout_height="128dp"
+        android:contentDescription="s"
         android:textAlignment="center"
         android:layout_margin="16dp"
+        android:layout_marginTop="16dp"
         tools:src="@drawable/dice_six_faces_one"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolBar"
         />
 
     <androidx.fragment.app.FragmentContainerView

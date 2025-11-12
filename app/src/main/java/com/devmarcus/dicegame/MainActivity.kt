@@ -1,6 +1,10 @@
 package com.devmarcus.dicegame
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
@@ -32,6 +36,9 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        setSupportActionBar(binding.toolBar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED){
@@ -92,4 +99,27 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /**
+        Setting the menu configuration and show the options
+        @param menu: Menu
+        @return boolean
+     */
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.settings_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId){
+            R.id.create->{
+                Toast.makeText(this@MainActivity, "Creating", Toast.LENGTH_SHORT).show()
+                true}
+            R.id.open->{
+                Toast.makeText(this@MainActivity, "Opening", Toast.LENGTH_SHORT).show()
+
+                true}
+            else -> false
+        }
+    }
 }

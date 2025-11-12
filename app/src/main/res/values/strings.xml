@@ -8,4 +8,7 @@
     <string name="row_dice">Row dice</string>
     <string name="a_dice_image_is_showing_here">a dice image is showing here</string>
     <string name="dice_image">dice image</string>
+    <string name="settings">Settings</string>
+    <string name="create">Create</string>
+    <string name="open">Open</string>
 </resources>
