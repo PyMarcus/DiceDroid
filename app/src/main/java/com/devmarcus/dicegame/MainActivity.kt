@@ -3,7 +3,9 @@ package com.devmarcus.dicegame
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.Lifecycle
@@ -76,7 +78,17 @@ class MainActivity : AppCompatActivity() {
 
         // roll dice btn
         binding.btnPlayMain.setOnClickListener {
-            viewModel.rollDice()
+            //
+            AlertDialog.Builder(this@MainActivity).
+                    setTitle("Rolled dices")
+                .setMessage("Do you really want to roll dice?")
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton("Yes"){_,_-> viewModel.rollDice()}
+                .setPositiveButtonIcon(AppCompatResources.getDrawable(this@MainActivity, R.drawable.dice_six_faces_one))
+                .setNegativeButton("No"){_,_->}
+                .setCancelable(false)
+                .create()
+                .show()
         }
     }
 
